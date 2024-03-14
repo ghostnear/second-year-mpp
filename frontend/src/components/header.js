@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import GenericHeader from './genericHeaderPiece.js';
 
 const Header = () => {
-    return <header className={`w-100 bg-secondary sticky top-0 p-4`}>
+    return <header className={`w-100 bg-secondary sticky top-0 p-4 shadow-lg`}>
         <nav className={`grid grid-flow-col justify-stretch`}>
             {/* Left side of the navbar. */}
             <div className={`flex justify-start`}>
