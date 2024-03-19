@@ -7,7 +7,10 @@ const AddModal = (params) => {
         const description = document.getElementById('add-modal-description').value;
 
         // TODO: this should be a request to the backend in the future.
-        params.games[1]([...params.games[0], { id: params.games[0].length + 1, title: title, description: description }]);
+        // Workaround:
+        // Get max id and add 1 to it.
+        const maxID = Math.max(...params.games[0].map(game => game.id));
+        params.games[1]([...params.games[0], { id: maxID + 1, title: title, description: description }]);
         
         closeModal();
     }
