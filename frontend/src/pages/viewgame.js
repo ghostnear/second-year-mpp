@@ -2,6 +2,7 @@ import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ArrowUturnLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { DeleteModal, DeleteModalButton } from '../components/game/deleteModal';
+import { EditModal, EditModalButton } from '../components/game/editModal';
 
 const GamePage = (params) => {
     const { id } = useParams();
@@ -21,12 +22,14 @@ const GamePage = (params) => {
     return (
         <main className={`min-h-screen bg-main dark:text-main p-5 px-20`}>
             <DeleteModal onConfirm={onDelete}/>
+            <EditModal games={params.games} id={id}/>
             <div className={`flex items-center pb-3 font-mono`}>
                 <h1 className={`text-3xl`}>
                     {game.title}
                 </h1>
                 <div className={`ml-auto`}></div>
                 <DeleteModalButton/>
+                <EditModalButton/>
                 <Link to="/games/" className={`w-7 h-7`}>
                     <ArrowUturnLeftIcon className={`hover:fill-blue-500 transition-colors hover:cursor-pointer`}/>
                 </Link>

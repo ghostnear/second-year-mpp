@@ -16,7 +16,7 @@ const AddModal = (params) => {
         <div className={`bg-secondary p-5 rounded-lg shadow-lg w-2/4 text-center`}>
             {/* Header */}
             <div className={`w-full flex`}>
-                <h1 className={`text-3xl`}>Add a game</h1>
+                <h1 className={`text-3xl`}>Add a game:</h1>
                 <div className={`ml-auto`}>
                     <button>
                         <XMarkIcon className={`w-10 h-10 hover:fill-red-400 transition-colors hover:cursor-pointer`} onClick={closeModal}/>
@@ -26,11 +26,11 @@ const AddModal = (params) => {
             <hr className={`my-3`}/>
             {/* Body */}
             <div className={`w-full mb-6 text-left`}>
-                <label for="add-modal-title" className={`text-m`}>Title:</label>
+                <label htmlFor="add-modal-title" className={`text-m`}>Title:</label>
                 <input id="add-modal-title" type="text" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
 
-                <label for="add-modal-description" className={`text-m`}>Description:</label>
-                <textarea id="add-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md`}></textarea>
+                <label htmlFor="add-modal-description" className={`text-m`}>Description:</label>
+                <textarea id="add-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md`}/>
             </div>
              {/* Footer */}
             <div className={`w-full flex justify-center`}>
