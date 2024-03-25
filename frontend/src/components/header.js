@@ -21,7 +21,7 @@ const Header = () => {
             {/* Right side of the navbar. */}
             <div className={`flex justify-end`}>
                 <Link to="/settings/">
-                    <Cog8ToothIcon className={`w-8 h-8 dark:text-main font-mono text-page-header`}/>
+                    <Cog8ToothIcon className={`w-8 h-8 dark:text-main hover:dark:fill-gray-400 font-mono text-page-header`}/>
                 </Link>
             </div>
         </nav>

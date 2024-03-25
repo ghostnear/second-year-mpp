@@ -34,8 +34,12 @@ const App = () => {
         
         <Routes>
             <Route path="/" element={ <HomePage/> } />
-            <Route path="/game/:id" element={ <ViewGamePage games={[games, setGames]}/> } />
-            <Route path="/games/" element={ <GamesPage games={[games, setGames]}/> } />
+            <Route path="/game/:id" element={ <ViewGamePage
+                games={games} setGames={setGames}
+            /> } />
+            <Route path="/games/" element={ <GamesPage
+                games={games} setGames={setGames}
+            /> } />
             <Route path="/404/" element={ <NotFoundPage/> } />
             <Route path="*" element={ <Navigate replace to="/404/" /> } />
         </Routes>
