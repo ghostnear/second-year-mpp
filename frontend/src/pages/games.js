@@ -3,6 +3,7 @@ import GameItem from '../components/games/item.js';
 import { useState } from 'react';
 import { FunnelIcon } from '@heroicons/react/20/solid';
 import { useNavigate } from 'react-router-dom';
+import Chart from 'react-apexcharts';
 import PageSelector from '../components/pageSelector.js';
 import PerPageCountSelector from '../components/perPageCountSelector.js';
 
@@ -17,6 +18,20 @@ const GamesPage = (params) => {
         params.setGames(params.games.sort((a, b) => a.title.localeCompare(b.title)));
         navigate("/games/");
     }
+
+    const getYearMap = () => {
+        let yearMap = new Map();
+        params.games.forEach((game) => {
+            if (yearMap.has(game.releaseYear)) {
+                yearMap.set(game.releaseYear, yearMap.get(game.releaseYear) + 1);
+            } else {
+                yearMap.set(game.releaseYear, 1);
+            }
+        });
+        return new Map([...yearMap.entries()].sort());
+    }
+
+    const yearMap = getYearMap();
 
     return (
         <main className={`min-h-screen bg-main dark:text-main`}>
@@ -51,6 +66,31 @@ const GamesPage = (params) => {
                     }/>
                 }
             </div>
+            <Chart series={[{name: "Games released this year", data: Array.from(yearMap.values()) }]}
+                options={{
+                    chart: {
+                        id: "basic-bar",
+                        background: 'transparent'
+                    },
+                    xaxis: {
+                        title: {
+                            text: 'Year of release'
+                        },
+                        categories: Array.from(yearMap.keys())
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Games released'
+                        },
+                        min: 0
+                    },
+                    theme: {
+                        mode: 'dark'
+                    }
+                }}
+                type="line" className={`w-1/2 mx-auto mb-2 rounded-lg shadow-lg bg-secondary`}
+            />
+            <div className={`pb-10`}/> {/* Library's bugged idk why. */}
         </main>
     );
 }
