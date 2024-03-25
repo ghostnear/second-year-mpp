@@ -3,22 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 const EditModal = (params) => {
     // Deep copy the original game to modify it only at the end.
-    const game = params.games[0].find(game => game.id === parseInt(params.id));
+    const game = params.games.find(game => game.id === parseInt(params.id));
 
     const navigate = useNavigate();
 
     const saveChanges = () => {
         const title = document.getElementById('edit-modal-title').value;
         const description = document.getElementById('edit-modal-description').value;
+        const releaseYear = parseInt(document.getElementById('edit-modal-release-year').value);
 
-        // TODO: this should be a request to the backend in the future.
+        // TODO: this should have a request to the backend in the future.
         game.title = title;
         game.description = description;
+        game.releaseYear = releaseYear;
 
         closeModal();
         
         // NOTE: This fixes the page not updating.
-        console.log(game.id, game.title, game.description);
         navigate(`/game/${game.id}/`);
     }
 
@@ -41,6 +42,9 @@ const EditModal = (params) => {
 
                 <label htmlFor="edit-modal-description" className={`text-m`}>Description:</label>
                 <textarea id="edit-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md`} defaultValue={game.description}/>
+            
+                <label htmlFor="edit-modal-release-year" className={`text-m`}>Release Year:</label>
+                <input id="edit-modal-release-year" type="number" className={`w-full bg-third p-2 rounded-md shadow-md`} defaultValue={game.releaseYear}/>
             </div>
              {/* Footer */}
             <div className={`w-full flex justify-center`}>

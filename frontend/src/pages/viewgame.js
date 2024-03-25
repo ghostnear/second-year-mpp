@@ -1,6 +1,6 @@
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { ArrowUturnLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { ArrowUturnLeftIcon } from '@heroicons/react/24/solid';
 import { DeleteModal, DeleteModalButton } from '../components/game/deleteModal';
 import { EditModal, EditModalButton } from '../components/game/editModal';
 
@@ -8,14 +8,14 @@ const GamePage = (params) => {
     const { id } = useParams();
 
     // If there is no game with that ID, go to 404.
-    const game = params.games[0].find(game => game.id === parseInt(id));
+    const game = params.games.find(game => game.id === parseInt(id));
     if(!game)
         return <Navigate replace to="/404/" />
 
     // Page events are defined here.
     const navigate = useNavigate();
     const onDelete = () => {
-        params.games[1](params.games[0].filter(g => g.id !== game.id));
+        params.setGames(params.games.filter(g => g.id !== game.id));
         navigate("/games/");
     }
 
@@ -40,6 +40,9 @@ const GamePage = (params) => {
                 <p>
                     {game.description}
                 </p>
+            </div>
+            <div className={`bg-secondary p-4 rounded-lg shadow-lg mt-4`}>
+                <h2 className={`text-2xl mb-2`}> Release Year: {game.releaseYear} </h2>
             </div>
         </main>
     );
