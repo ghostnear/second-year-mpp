@@ -36,7 +36,7 @@ const GamesPage = (params) => {
     return (
         <main className={`min-h-screen bg-main dark:text-main`}>
             <div className={`w-full h-full bg-main p-5 px-20`}>
-                <AddModal games={params.games} />
+                <AddModal games={params.games} setGames={params.setGames} />
                 <div className={`flex items-center pb-3 font-mono`}>
                     <h1 className={`text-5xl`}>
                         Games

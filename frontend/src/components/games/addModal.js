@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const AddModal = (params) => {
     const saveChanges = () => {
         const title = document.getElementById('add-modal-title').value;
         const description = document.getElementById('add-modal-description').value;
+        const releaseYear = parseInt(document.getElementById('add-modal-release-year').value);
 
         // TODO: this should be a request to the backend in the future.
         // Workaround:
         // Get max id and add 1 to it.
-        const maxID = Math.max(...params.games[0].map(game => game.id));
-        params.games[1]([...params.games[0], { id: maxID + 1, title: title, description: description }]);
+        const maxID = Math.max(...params.games.map(game => game.id));
+        params.setGames([...params.games, { id: maxID + 1, title: title, description: description, releaseYear: releaseYear}]);
         
         closeModal();
     }
@@ -33,7 +33,10 @@ const AddModal = (params) => {
                 <input id="add-modal-title" type="text" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
 
                 <label htmlFor="add-modal-description" className={`text-m`}>Description:</label>
-                <textarea id="add-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md`}/>
+                <textarea id="add-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
+
+                <label htmlFor="add-modal-release-year" className={`text-m`}>Release year:</label>
+                <input id="add-modal-release-year" type="text" className={`w-full bg-third p-2 rounded-md shadow-md`}/>
             </div>
              {/* Footer */}
             <div className={`w-full flex justify-center`}>
