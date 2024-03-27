@@ -1,13 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/*
+ * Colors are defined in gothic-bit.hex
+ * These are, in order:
+ *  0e0e12
+ *  1a1a24
+ *  333346
+ *  535373
+ *  8080a4
+ *  a6a6bf
+ *  c1c1d2
+ *  e6e6ec
+ *  Lospec pallette: https://lospec.com/palette-list/gothic-bit
+ */
+
+@layer components {
+    .bg-main {
+        background-color: #0E0E12;
+    }
+    .bg-secondary {
+        background-color: #1A1A24;
+    }
+    .bg-third {
+        background-color: #333346;
+    }
+    .text-main {
+        color: #C1C1D2;
+    }
+    .text-page-header {
+        color: #E6E6EC;
+    }
+  }
