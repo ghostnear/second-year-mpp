@@ -15,6 +15,12 @@ class Game:
             "release_year": self.release_year
         }
     
+    def deep_copy(self, other):
+        self.id = other.id
+        self.title = other.title
+        self.description = other.description
+        self.release_year = other.release_year
+    
 gameParser = reqparse.RequestParser()
 gameParser.add_argument('title', type=str)
 gameParser.add_argument('description', type=str)
