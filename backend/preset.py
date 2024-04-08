@@ -1,0 +1,31 @@
+from models import Game
+
+def init_memory_repository(data):
+    # Create some preset data
+    data.insert(Game("Super Mario Bros.", "A classic game about a plumber", 1985))
+    data.insert(Game("The Legend of Zelda", "A classic game about a hero", 1986))
+    data.insert(Game("Minecraft", "A game about building stuff", 2011))
+    data.insert(Game("Among Us", "A game about deception", 2018))
+    data.insert(Game("Fortnite", "A game about building and shooting", 2017))
+    data.insert(Game("League of Legends", "A game about raging", 2009))
+    data.insert(Game("Valorant", "A game about shooting", 2020))
+    data.insert(Game("Overwatch", "A game about shooting", 2016))
+    data.insert(Game("World of Warcraft", "A game about grinding", 2004))
+    data.insert(Game("Halo", "A game about shooting", 2001))
+    data.insert(Game("Call of Duty", "A game about shooting", 2003))
+    data.insert(Game("Counter-Strike", "A game about shooting", 2000))
+    data.insert(Game("Dota 2", "A game about raging", 2013))
+    data.insert(Game("Apex Legends", "A game about shooting", 2019))
+    data.insert(Game("Rainbow Six Siege", "A game about shooting", 2015))
+    data.insert(Game("Rocket League", "A game about cars playing soccer", 2015))
+    data.insert(Game("Terraria", "A game about building stuff", 2011))
+    data.insert(Game("Stardew Valley", "A game about farming", 2016))
+    data.insert(Game("The Witcher 3", "A game about a witcher", 2015))
+    data.insert(Game("Cyberpunk 2077", "A game about cyberpunk", 2020))
+    data.insert(Game("Dark Souls", "A game about dying", 2011))
+    data.insert(Game("Sekiro", "A game about dying", 2019))
+    data.insert(Game("Bloodborne", "A game about dying", 2015))
+    data.insert(Game("Demon's Souls", "A game about dying", 2009))
+    data.insert(Game("Elden Ring", "A game about dying", 2022))
+    data.insert(Game("Silent Hill", "A game about horror", 1999))
+    
