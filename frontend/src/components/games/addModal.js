@@ -1,18 +1,23 @@
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddModal = (params) => {
+    const navigate = useNavigate();
+
     const saveChanges = () => {
         const title = document.getElementById('add-modal-title').value;
         const description = document.getElementById('add-modal-description').value;
         const releaseYear = parseInt(document.getElementById('add-modal-release-year').value);
 
-        // TODO: this should be a request to the backend in the future.
-        // Workaround:
-        // Get max id and add 1 to it.
-        const maxID = Math.max(...params.games.map(game => game.id));
-        params.setGames([...params.games, { id: maxID + 1, title: title, description: description, releaseYear: releaseYear}]);
-        
-        closeModal();
+        axios.post(`http://localhost:5000/games/`, {
+            title: title,
+            description: description,
+            release_year: releaseYear
+        }).then((response) => {
+            closeModal();
+            navigate(`/game/${response.data.id}/`);
+        });
     }
 
     return <div id="add-modal" className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 justify-center items-center hidden`}>

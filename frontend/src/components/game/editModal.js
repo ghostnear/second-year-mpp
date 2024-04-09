@@ -1,26 +1,28 @@
 import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const EditModal = (params) => {
-    // Deep copy the original game to modify it only at the end.
-    const game = params.games.find(game => game.id === parseInt(params.id));
+    const game = params.game;
 
     const navigate = useNavigate();
 
     const saveChanges = () => {
         const title = document.getElementById('edit-modal-title').value;
         const description = document.getElementById('edit-modal-description').value;
-        const releaseYear = parseInt(document.getElementById('edit-modal-release-year').value);
+        const release_year = parseInt(document.getElementById('edit-modal-release-year').value);
 
-        // TODO: this should have a request to the backend in the future.
-        game.title = title;
-        game.description = description;
-        game.releaseYear = releaseYear;
-
-        closeModal();
-        
-        // NOTE: This fixes the page not updating.
-        navigate(`/game/${game.id}/`);
+        axios.put(`http://localhost:5000/game/${game.id}`, {
+            title: title,
+            description: description,
+            release_year: release_year
+        }).then(() => {
+            game.title = title;
+            game.description = description;
+            game.release_year = release_year;
+            closeModal();
+            navigate(`/game/${game.id}/`);
+        });
     }
 
     return <div id="edit-modal" className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 justify-center items-center hidden`}>
@@ -44,7 +46,7 @@ const EditModal = (params) => {
                 <textarea id="edit-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md`} defaultValue={game.description}/>
             
                 <label htmlFor="edit-modal-release-year" className={`text-m`}>Release Year:</label>
-                <input id="edit-modal-release-year" type="number" className={`w-full bg-third p-2 rounded-md shadow-md`} defaultValue={game.releaseYear}/>
+                <input id="edit-modal-release-year" type="number" className={`w-full bg-third p-2 rounded-md shadow-md`} defaultValue={game.release_year}/>
             </div>
              {/* Footer */}
             <div className={`w-full flex justify-center`}>
