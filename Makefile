@@ -3,6 +3,10 @@
 prepare-backend:
 	@pip install -r backend/requirements.txt
 
+test-backend:
+	@echo "[INFO]: Running backend tests..."
+	@python ./backend/__tests__.py
+
 run-backend: prepare-backend
 	@echo "[INFO]: Running backend..."
 	@python backend

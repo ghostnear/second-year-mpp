@@ -4,6 +4,10 @@ class MemoryRepository():
         self.next_id = 1
         self.data_class = data_class
 
+    def clear(self):
+        self.data = []
+        self.next_id = 1
+
     def insert(self, obj):
         obj.id = self.next_id
         self.next_id += 1
