@@ -56,7 +56,7 @@ const GamesPage = (params) => {
         <GameContext.Provider value={{games, setGames}}>
             <main className={`min-h-screen bg-main dark:text-main`}>
                 <div className={`w-full h-full bg-main p-5 px-20`}>
-                    <AddModal games={games} setGames={setGames} />
+                    <AddModal/>
                     <div className={`flex items-center pb-3 font-mono`}>
                         <h1 className={`text-5xl`}>
                             Games

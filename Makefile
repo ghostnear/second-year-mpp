@@ -5,7 +5,8 @@ prepare-backend:
 
 test-backend:
 	@echo "[INFO]: Running backend tests..."
-	@python ./backend/__tests__.py
+	@python -m coverage run ./backend/__tests__.py
+	@python -m coverage report -m
 
 run-backend: prepare-backend
 	@echo "[INFO]: Running backend..."
