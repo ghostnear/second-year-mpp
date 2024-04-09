@@ -54,7 +54,7 @@ class GameListResource(Resource):
 
 		return [e.serialize() for e in data.get_paged(size=pageSize, offset=pageOffset)]
 
-api.add_resource(GameListResource, '/games')
+api.add_resource(GameListResource, '/games/')
 api.add_resource(GameResource, '/game/<id>')
 
 # App wrapper.

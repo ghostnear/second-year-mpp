@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.12.0",
     "postcss": "^8.4.35",
     "process": "^0.11.10",
