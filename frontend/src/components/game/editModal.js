@@ -12,17 +12,22 @@ const EditModal = (params) => {
         const description = document.getElementById('edit-modal-description').value;
         const release_year = parseInt(document.getElementById('edit-modal-release-year').value);
 
-        axios.put(`http://localhost:5000/game/${game.id}`, {
-            title: title,
-            description: description,
-            release_year: release_year
-        }).then(() => {
-            game.title = title;
-            game.description = description;
-            game.release_year = release_year;
-            closeModal();
-            navigate(`/game/${game.id}/`);
-        });
+        try {
+            axios.put(`http://localhost:5000/game/${game.id}`, {
+                title: title,
+                description: description,
+                release_year: release_year
+            }).then(() => {
+                game.title = title;
+                game.description = description;
+                game.release_year = release_year;
+                closeModal();
+                navigate(`/game/${game.id}/`);
+            });
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
 
     return <div id="edit-modal" className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 justify-center items-center hidden`}>

@@ -13,20 +13,29 @@ const GamePage = () => {
     // Page events are defined here.
     const navigate = useNavigate();
     const onDelete = () => {
-        axios.delete(`http://localhost:5000/game/${id}`).then(() => {
-            navigate("/games/");
-        });
+        try {
+            axios.delete(`http://localhost:5000/game/${id}`).then(() => {
+                navigate("/games/");
+            });
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
 
     // Use this to load data after creating the page.
     useEffect(() => {
         async function fetchData() {
-            await axios.get(`http://localhost:5000/game/${id}`).then((response) => {
-                return response.data;
-            }).then((data) => {
-                setGame(data);
-                /* TODO: go to 404 if game is not found. */
-            });
+            try {
+                await axios.get(`http://localhost:5000/game/${id}`).then((response) => {
+                    return response.data;
+                }).then((data) => {
+                    setGame(data);
+                });
+            }
+            catch(error) {
+                console.error(error);
+            }
         }
         fetchData();
         }, [] // Things to listen for.

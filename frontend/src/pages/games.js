@@ -42,11 +42,16 @@ const GamesPage = (params) => {
     // Use this to load data after creating the page.
     useEffect(() => {
         async function fetchData() {
-          await axios.get(`http://localhost:5000/games/?pageOffset=${gamePage * gamesPerPage}&pageSize=${gamesPerPage}`).then((response) => {
-            return response.data;
-          }).then((data) => {
-            setGames(data);
-          });
+          try {
+            await axios.get(`http://localhost:5000/games/?pageOffset=${gamePage * gamesPerPage}&pageSize=${gamesPerPage}`).then((response) => {
+                return response.data;
+            }).then((data) => {
+                setGames(data);
+            });
+          }
+          catch(error) {
+            console.error(error);
+          }
         }
         fetchData();
       }, [gamePage, gamesPerPage] // Things to listen for.

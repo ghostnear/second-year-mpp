@@ -45,3 +45,8 @@ class GameListResource(Resource):
 		pageOffset = int(request.args["pageOffset"]) if "pageOffset" in request.args else 0
 
 		return [e.serialize() for e in data.get_paged(size=pageSize, offset=pageOffset)]
+	
+# Ping endpoint.
+class PingResource(Resource):
+	def get(self):
+		return simple_message_response("Pong!", 200)

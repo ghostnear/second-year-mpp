@@ -10,14 +10,19 @@ const AddModal = () => {
         const description = document.getElementById('add-modal-description').value;
         const releaseYear = parseInt(document.getElementById('add-modal-release-year').value);
 
-        axios.post(`http://localhost:5000/games/`, {
-            title: title,
-            description: description,
-            release_year: releaseYear
-        }).then((response) => {
-            closeModal();
-            navigate(`/game/${response.data.id}/`);
-        });
+        try {
+            axios.post(`http://localhost:5000/games/`, {
+                title: title,
+                description: description,
+                release_year: releaseYear
+            }).then((response) => {
+                closeModal();
+                navigate(`/game/${response.data.id}/`);
+            });
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
 
     return <div id="add-modal" className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 justify-center items-center hidden`}>
