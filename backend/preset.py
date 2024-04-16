@@ -2,6 +2,7 @@ from models import Game
 
 def init_memory_repository(data):
     # Create some preset data
+    data.insert(Game.generate_fake())
     data.insert(Game("Super Mario Bros.", "A classic game about a plumber", 1985))
     data.insert(Game("The Legend of Zelda", "A classic game about a hero", 1986))
     data.insert(Game("Minecraft", "A game about building stuff", 2011))

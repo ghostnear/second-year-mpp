@@ -1,4 +1,8 @@
+import random
 from flask_restful import reqparse
+from faker import Faker
+
+fakeGameGenerator = Faker()
 
 class Game:
     def __init__(self, title, description, release_year):
@@ -20,6 +24,13 @@ class Game:
         self.title = other.title
         self.description = other.description
         self.release_year = other.release_year
+
+    def generate_fake():
+        return Game(
+            title=fakeGameGenerator.name(),
+            description=fakeGameGenerator.text(),
+            release_year=random.randint(1970, 2023)
+        )
     
 gameParser = reqparse.RequestParser()
 gameParser.add_argument('title', type=str)

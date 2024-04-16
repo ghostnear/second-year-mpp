@@ -2,18 +2,21 @@ import Axios from 'axios';
 import { useState } from 'react';
 
 const ConnectionChecker = () => {
-    const checkInterval = 5000;
+    const checkInterval = 10000;
 
     const [isOffline, setIsOffline] = useState(false);
     
     async function checkConnection() {
         try {
             await Axios.get('http://localhost:5000/ping');
-        } catch (error) {
+            if(isOffline === true)
+                window.location.reload();
             setIsOffline(false);
+            setTimeout(checkConnection, checkInterval);
+        } catch (error) {
+            setIsOffline(true);
+            setTimeout(checkConnection, checkInterval);
         }
-        setIsOffline(true);
-        setTimeout(checkConnection, checkInterval);
     }
 
     checkConnection();
