@@ -1,6 +1,6 @@
 from models import Game
 
-def init_memory_repository(data):
+def init_repository_data(data):
     # Create some preset data
     data.insert(Game.generate_fake())
     data.insert(Game("Super Mario Bros.", "A classic game about a plumber", 1985))
