@@ -1,9 +1,7 @@
 from flask_restful import Resource, request
-from memory_repository import *
 from models import *
 from config import *
 from auxiliary import *
-from repository import data
 
 # This is the resource that will be used to handle one game.
 def check_game_exists(id):
@@ -44,7 +42,12 @@ class GameListResource(Resource):
 		# Get page offset from request.
 		pageOffset = int(request.args["pageOffset"]) if "pageOffset" in request.args else 0
 
-		return [e.serialize() for e in data.get_paged(size=pageSize, offset=pageOffset)]
+		# Make the query on the database.
+		try:
+			games = db.session.execute(db.select(Game).limit(pageSize).offset(pageOffset)).fetchall()
+			return [game[0].serialize() for game in games]
+		except Exception as e:
+			return simple_message_error("An error occurred while fetching the games: {}".format(e))
 	
 # Ping endpoint.
 class PingResource(Resource):
