@@ -1,10 +1,15 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
+import { useContext } from 'react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import GameContext from '../contexts/gameContext.js';
+import { MAXIMUM_GAMES_PER_PAGE } from '../constants/gamesPerPage.js';
 
 const PageSelector = (params) => {
+    const {games, setGames} = useContext(GameContext);
+
     return <div className={`w-full bg-secondary my-4 flex`}>
         <div className={`mx-auto flex p-1 shadow-md`}>
             {params.offset > 0 && 
-                <ChevronLeftIcon className={`w-7 h-7 my-auto dark:hover:fill-blue-400 cursor-pointer`} onClick={() => params.setOffset(params.offset - 1)}/>
+                <ChevronLeftIcon className={`w-5 h-5 my-auto dark:hover:fill-blue-400 cursor-pointer`} onClick={() => params.setOffset(params.offset - 1)}/>
             }
             {
                 Array.from(Array(params.size).keys()).map((i) => {
@@ -14,8 +19,8 @@ const PageSelector = (params) => {
                     </div>
                 })
             }
-            {params.offset < params.size - 1 && 
-                <ChevronRightIcon className={`w-7 h-7 my-auto dark:hover:fill-blue-400 cursor-pointer`} onClick={() => params.setOffset(params.offset + 1)}/>
+            {params.offset < params.size - 1 &&
+                <ChevronRightIcon className={`w-5 h-5 my-auto dark:hover:fill-blue-400 cursor-pointer`} onClick={() => params.setOffset(params.offset + 1)}/>
             }
         </div>
     </div>;

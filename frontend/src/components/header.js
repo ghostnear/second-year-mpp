@@ -1,9 +1,13 @@
 import { Cog8ToothIcon  } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
 import GenericHeader from './genericHeaderPiece.js';
+import ConnectionChecker from './connectionChecker.js';
 
 const Header = () => {
     return <header className={`w-full bg-secondary z-10 sticky top-0 p-4 shadow-lg`}>
+        
+        <ConnectionChecker/>
+        
         <nav className={`grid grid-flow-col justify-stretch`}>
             {/* Left side of the navbar. */}
             <div className={`flex justify-start`}>

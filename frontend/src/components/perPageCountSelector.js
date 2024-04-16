@@ -4,8 +4,8 @@ const PerPageCountSelector = (params) => {
     return <div className={`${params.className} rounded-md shadow-md bg-secondary flex`}>
         <div className={`flex p-1 shadow-md mx-4`}>
             <h1 className={`text-xl my-auto mr-2`}>Per page:</h1>
-            {params.perPage > params.multiple && 
-                <ChevronLeftIcon className={`w-5 h-5 my-auto mr-2 dark:hover:fill-blue-400 cursor-pointer`} onClick={() => {
+            {params.perPage > params.min && 
+                <ChevronLeftIcon className={`w-4 h-4 my-auto mr-2 dark:hover:fill-blue-400 cursor-pointer`} onClick={() => {
                     params.setOffset(0)
                     params.setPerPage(params.perPage - params.multiple)
                 }}/>
@@ -15,8 +15,8 @@ const PerPageCountSelector = (params) => {
                     {params.perPage}
                 </h2>
             }
-            {params.perPage < params.size && 
-                <ChevronRightIcon className={`w-5 h-5 my-auto mx-2 dark:hover:fill-blue-400 cursor-pointer`} onClick={() => {
+            {params.perPage < params.max && 
+                <ChevronRightIcon className={`w-4 h-4 my-auto mx-2 dark:hover:fill-blue-400 cursor-pointer`} onClick={() => {
                     params.setOffset(0)
                     params.setPerPage(params.perPage + params.multiple)
                 }}/>

@@ -1,28 +1,50 @@
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/solid';
 import { DeleteModal, DeleteModalButton } from '../components/game/deleteModal';
 import { EditModal, EditModalButton } from '../components/game/editModal';
+import axios from 'axios';
 
-const GamePage = (params) => {
+const GamePage = () => {
     const { id } = useParams();
 
-    // If there is no game with that ID, go to 404.
-    const game = params.games.find(game => game.id === parseInt(id));
-    if(!game)
-        return <Navigate replace to="/404/" />
-
+    const [game, setGame] = useState({});
     // Page events are defined here.
     const navigate = useNavigate();
     const onDelete = () => {
-        params.setGames(params.games.filter(g => g.id !== game.id));
-        navigate("/games/");
+        try {
+            axios.delete(`http://localhost:5000/game/${id}`).then(() => {
+                navigate("/games/");
+            });
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
+
+    // Use this to load data after creating the page.
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                await axios.get(`http://localhost:5000/game/${id}`).then((response) => {
+                    return response.data;
+                }).then((data) => {
+                    setGame(data);
+                });
+            }
+            catch(error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+        }, [] // Things to listen for.
+    );
 
     return (
         <main className={`min-h-screen bg-main dark:text-main p-5 px-20`}>
             <DeleteModal onConfirm={onDelete}/>
-            <EditModal games={params.games} id={id}/>
+            <EditModal game={game} id={id}/>
             <div className={`flex items-center pb-3 font-mono`}>
                 <h1 className={`text-3xl`}>
                     {game.title}
@@ -42,7 +64,7 @@ const GamePage = (params) => {
                 </p>
             </div>
             <div className={`bg-secondary p-4 rounded-lg shadow-lg mt-4`}>
-                <h2 className={`text-2xl mb-2`}> Release Year: {game.releaseYear} </h2>
+                <h2 className={`text-2xl mb-2`}> Release Year: {game.release_year} </h2>
             </div>
         </main>
     );
