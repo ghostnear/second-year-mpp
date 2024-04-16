@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useState } from 'react';
 
 const ConnectionChecker = () => {
-    const checkInterval = 10000;
+    const checkInterval = 5000;
 
     const [isOffline, setIsOffline] = useState(false);
     
@@ -12,14 +12,12 @@ const ConnectionChecker = () => {
             if(isOffline === true)
                 window.location.reload();
             setIsOffline(false);
-            setTimeout(checkConnection, checkInterval);
         } catch (error) {
             setIsOffline(true);
-            setTimeout(checkConnection, checkInterval);
         }
     }
 
-    checkConnection();
+    setInterval(checkConnection, checkInterval);
 
     return (
         <>
