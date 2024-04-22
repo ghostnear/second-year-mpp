@@ -1,15 +1,17 @@
 import os
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from resources import *
 
 BaseDir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] =\
-        'sqlite:///' + os.path.join(BaseDir, 'manga.db')
+        'sqlite:///' + os.path.join(BaseDir, 'data/manga.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
+CORS(app)
 
 db.init_app(app)
 
