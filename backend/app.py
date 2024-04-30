@@ -13,6 +13,8 @@ api = Api(app)
 
 db.init_app(app)
 
+api.add_resource(UserListResource, '/users/')
+api.add_resource(UserResource, '/user/<id>')
 api.add_resource(GameListResource, '/games/')
 api.add_resource(GameResource, '/game/<id>')
 api.add_resource(PingResource, '/ping')

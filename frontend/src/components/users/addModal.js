@@ -6,18 +6,18 @@ const AddModal = () => {
     const navigate = useNavigate();
 
     const saveChanges = () => {
-        const title = document.getElementById('add-modal-title').value;
-        const description = document.getElementById('add-modal-description').value;
-        const releaseYear = parseInt(document.getElementById('add-modal-release-year').value);
+        const username = document.getElementById('add-modal-username').value;
+        const password = document.getElementById('add-modal-password').value;
+        const favGame = document.getElementById('add-modal-fav-game').value;
 
         try {
-            axios.post(`http://localhost:5000/games/`, {
-                title: title,
-                description: description,
-                release_year: releaseYear
+            axios.post(`http://localhost:5000/users/`, {
+                name: username,
+                password: password,
+                favourite_game: favGame
             }).then((response) => {
                 closeModal();
-                navigate(`/game/${response.data.id}/`);
+                navigate(`/user/${response.data.id}/`);
             });
         }
         catch(error) {
@@ -29,7 +29,7 @@ const AddModal = () => {
         <div className={`bg-secondary p-5 rounded-lg shadow-lg w-2/4 text-center`}>
             {/* Header */}
             <div className={`w-full flex`}>
-                <h1 className={`text-3xl`}>Add a game:</h1>
+                <h1 className={`text-3xl`}>Add an user:</h1>
                 <div className={`ml-auto`}>
                     <button>
                         <XMarkIcon className={`w-10 h-10 hover:fill-red-400 transition-colors hover:cursor-pointer`} onClick={closeModal}/>
@@ -39,14 +39,14 @@ const AddModal = () => {
             <hr className={`my-3`}/>
             {/* Body */}
             <div className={`w-full mb-6 text-left`}>
-                <label htmlFor="add-modal-title" className={`text-m`}>Title:</label>
-                <input id="add-modal-title" type="text" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
+                <label htmlFor="add-modal-username" className={`text-m`}>Username:</label>
+                <input id="add-modal-username" type="text" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
 
-                <label htmlFor="add-modal-description" className={`text-m`}>Description:</label>
-                <textarea id="add-modal-description" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
+                <label htmlFor="add-modal-password" className={`text-m`}>Password:</label>
+                <input id="add-modal-password" type="password" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
 
-                <label htmlFor="add-modal-release-year" className={`text-m`}>Release year:</label>
-                <input id="add-modal-release-year" type="number" className={`w-full bg-third p-2 rounded-md shadow-md`}/>
+                <label htmlFor="add-modal-fav-game" className={`text-m`}>Favourite game ID (optional): </label>
+                <input id="add-modal-fav-game" type="number" className={`w-full bg-third p-2 rounded-md shadow-md mb-3`}/>
             </div>
              {/* Footer */}
             <div className={`w-full flex justify-center`}>

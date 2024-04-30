@@ -20,6 +20,7 @@ const Header = () => {
             {/* Center of the navbar. */}
             <div className={`flex justify-center`}>
                 <GenericHeader label="Games" link="/games/"/>
+                <GenericHeader label="Users" link="/users/"/>
             </div>
 
             {/* Right side of the navbar. */}
