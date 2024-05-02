@@ -40,9 +40,9 @@ class UserListResource(Resource):
 	def post(self):
 		args = userParser.parse_args()
 		user = User()
-		user.name = args["name"]
-		user.password = args["password"] # This is a bad idea, but it's just an example.
-		user.favourite_game_id = int(args["favourite_game"]) if "favourite_game" in args and args["favourite_game"] != None else None
+		user.name = args['name']
+		user.password = args['password'] # This is a bad idea, but it's just an example.
+		user.favourite_game_id = int(args['favourite_game']) if 'favourite_game' in args and args["favourite_game"] != None else None
 		db.session.add(user)
 		db.session.commit()
 		return user.serialize()
