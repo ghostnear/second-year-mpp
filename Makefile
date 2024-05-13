@@ -1,14 +1,19 @@
 .PHONY: prepare-backend run-backend run-frontend
 
 prepare-backend:
+	@python -m venv backend/venv
+	@source backend/venv/bin/activate
 	@pip install -r backend/requirements.txt
+
+activate-backend:
+	@source backend/venv/bin/activate
 
 test-backend:
 	@echo "[INFO]: Running backend tests..."
 	@python -m coverage run ./backend/__tests__.py
 	@python -m coverage report -m
 
-run-backend: prepare-backend
+run-backend:
 	@echo "[INFO]: Running backend..."
 	@python backend
 
