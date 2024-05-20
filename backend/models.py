@@ -51,7 +51,6 @@ class User(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "password": self.password,  # This is a bad idea, but it's just an example.
             "favourite_game": self.favourite_game.serialize() if self.favourite_game is not None else None
         }
     

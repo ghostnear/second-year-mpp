@@ -8,7 +8,6 @@ import axios from 'axios';
 
 const UserPage = () => {
     const { id } = useParams();
-
     const [user, setUser] = useState({});
     // Page events are defined here.
     const navigate = useNavigate();
@@ -42,6 +41,8 @@ const UserPage = () => {
         }, [] // Things to listen for.
     );
 
+    const httpRequestConfiguration = {headers: { Authorization: `Bearer ${sessionStorage.getItem('access_token')}` }}
+
     return (
         <main className={`min-h-screen bg-main dark:text-main p-5 px-20`}>
             <DeleteModal onConfirm={onDelete}/>
@@ -60,7 +61,12 @@ const UserPage = () => {
             <hr className={`border-t-2 border-gray-400 pb-3`}/>
             <div className={`bg-secondary p-4 rounded-lg shadow-lg mt-4`}>
                 {user.favourite_game && <h2 className={`text-2xl mb-2`}> Favourite game: {user.favourite_game.title} </h2> }
-                <h2 className={`text-2xl mb-2`}> (!Not Public!) Password: {user.password} </h2>
+                { sessionStorage.getItem("userID") == id && useEffect(() => {
+                        axios.get('http://localhost:5000/userPassword', httpRequestConfiguration).then((response) => {
+                            alert("Your password is: " + response.data);
+                        })
+                    }, [])
+                }
             </div>
         </main>
     );

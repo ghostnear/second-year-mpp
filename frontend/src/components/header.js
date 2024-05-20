@@ -1,4 +1,4 @@
-import { Cog8ToothIcon  } from '@heroicons/react/24/solid'
+import { Cog8ToothIcon, UserIcon  } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
 import GenericHeader from './genericHeaderPiece.js';
 import ConnectionChecker from './connectionChecker.js';
@@ -25,6 +25,9 @@ const Header = () => {
 
             {/* Right side of the navbar. */}
             <div className={`flex justify-end`}>
+                <Link to={sessionStorage.getItem("userID") == null ? "/login/" : `/user/${sessionStorage.getItem("userID")}`}>
+                    <UserIcon className={`w-8 h-8 dark:text-main hover:dark:fill-gray-400 font-mono text-page-header`}/>
+                </Link>
                 <Link to="/settings/">
                     <Cog8ToothIcon className={`w-8 h-8 dark:text-main hover:dark:fill-gray-400 font-mono text-page-header`}/>
                 </Link>
