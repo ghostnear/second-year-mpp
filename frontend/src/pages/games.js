@@ -43,7 +43,7 @@ const GamesPage = (params) => {
     useEffect(() => {
         async function fetchData() {
           try {
-            await axios.get(`http://localhost:5000/games/?pageOffset=${gamePage * gamesPerPage}&pageSize=${gamesPerPage}`).then((response) => {
+            await axios.get(`https://mpp.ghnr.xyz/games/?pageOffset=${gamePage * gamesPerPage}&pageSize=${gamesPerPage}`).then((response) => {
                 return response.data;
             }).then((data) => {
                 setGames(data);

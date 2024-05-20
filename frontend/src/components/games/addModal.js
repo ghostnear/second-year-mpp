@@ -11,7 +11,7 @@ const AddModal = () => {
         const releaseYear = parseInt(document.getElementById('add-modal-release-year').value);
 
         try {
-            axios.post(`http://localhost:5000/games/`, {
+            axios.post(`https://mpp.ghnr.xyz/games/`, {
                 title: title,
                 description: description,
                 release_year: releaseYear

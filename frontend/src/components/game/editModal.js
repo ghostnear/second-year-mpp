@@ -13,7 +13,7 @@ const EditModal = (params) => {
         const release_year = parseInt(document.getElementById('edit-modal-release-year').value);
 
         try {
-            axios.put(`http://localhost:5000/game/${game.id}`, {
+            axios.put(`https://mpp.ghnr.xyz/game/${game.id}`, {
                 title: title,
                 description: description,
                 release_year: release_year

@@ -8,7 +8,7 @@ const ConnectionChecker = () => {
     
     async function checkConnection() {
         try {
-            await Axios.get('http://localhost:5000/ping');
+            await Axios.get('https://mpp.ghnr.xyz/ping');
             if(isOffline === true)
                 window.location.reload();
             setIsOffline(false);

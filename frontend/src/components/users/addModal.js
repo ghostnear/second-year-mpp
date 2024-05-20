@@ -11,7 +11,7 @@ const AddModal = () => {
         const favGame = document.getElementById('add-modal-fav-game').value;
 
         try {
-            axios.post(`http://localhost:5000/users/`, {
+            axios.post(`https://mpp.ghnr.xyz/users/`, {
                 name: username,
                 password: password,
                 favourite_game: favGame

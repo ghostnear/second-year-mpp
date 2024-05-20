@@ -42,7 +42,7 @@ const UsersPage = (params) => {
     useEffect(() => {
         async function fetchData() {
           try {
-            await axios.get(`http://localhost:5000/users/?pageOffset=${userPage * usersPerPage}&pageSize=${usersPerPage}`).then((response) => {
+            await axios.get(`https://mpp.ghnr.xyz/users/?pageOffset=${userPage * usersPerPage}&pageSize=${usersPerPage}`).then((response) => {
                 return response.data;
             }).then((data) => {
                 setUsers(data);

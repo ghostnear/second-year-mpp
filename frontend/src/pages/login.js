@@ -12,7 +12,7 @@ const LoginPage = () => {
             event.preventDefault();
             try
             {
-                const response = await axios.post("http://localhost:5000/auth/", {
+                const response = await axios.post("https://mpp.ghnr.xyz/auth/", {
                     "name": username,
                     "password": password,
                 });
@@ -34,7 +34,7 @@ const LoginPage = () => {
             event.preventDefault();
             try
             {
-                const response = await axios.put("http://localhost:5000/auth/", {
+                const response = await axios.put("https://mpp.ghnr.xyz/auth/", {
                     "name": username,
                     "password": password,
                 });

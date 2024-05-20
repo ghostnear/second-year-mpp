@@ -14,7 +14,7 @@ const GamePage = () => {
     const navigate = useNavigate();
     const onDelete = () => {
         try {
-            axios.delete(`http://localhost:5000/game/${id}`).then(() => {
+            axios.delete(`https://mpp.ghnr.xyz/game/${id}`).then(() => {
                 navigate("/games/");
             });
         }
@@ -27,7 +27,7 @@ const GamePage = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                await axios.get(`http://localhost:5000/game/${id}`).then((response) => {
+                await axios.get(`https://mpp.ghnr.xyz/game/${id}`).then((response) => {
                     return response.data;
                 }).then((data) => {
                     setGame(data);

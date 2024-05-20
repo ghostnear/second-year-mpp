@@ -13,7 +13,7 @@ const UserPage = () => {
     const navigate = useNavigate();
     const onDelete = () => {
         try {
-            axios.delete(`http://localhost:5000/user/${id}`).then(() => {
+            axios.delete(`https://mpp.ghnr.xyz/user/${id}`).then(() => {
                 navigate("/users/");
             });
         }
@@ -26,7 +26,7 @@ const UserPage = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                await axios.get(`http://localhost:5000/user/${id}`).then((response) => {
+                await axios.get(`https://mpp.ghnr.xyz/user/${id}`).then((response) => {
                     return response.data;
                 }).then((data) => {
                     setUser(data);
@@ -62,7 +62,7 @@ const UserPage = () => {
             <div className={`bg-secondary p-4 rounded-lg shadow-lg mt-4`}>
                 {user.favourite_game && <h2 className={`text-2xl mb-2`}> Favourite game: {user.favourite_game.title} </h2> }
                 { sessionStorage.getItem("userID") == id && useEffect(() => {
-                        axios.get('http://localhost:5000/userPassword', httpRequestConfiguration).then((response) => {
+                        axios.get('https://mpp.ghnr.xyz/userPassword', httpRequestConfiguration).then((response) => {
                             alert("Your password is: " + response.data);
                         })
                     }, [])

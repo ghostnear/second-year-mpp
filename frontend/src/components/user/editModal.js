@@ -12,7 +12,7 @@ const EditModal = (params) => {
         console.log(user);
 
         try {
-            axios.put(`http://localhost:5000/user/${user.id}`, {
+            axios.put(`https://mpp.ghnr.xyz/user/${user.id}`, {
                 name: name,
                 password: password,
                 favourite_game: fav_game_id
